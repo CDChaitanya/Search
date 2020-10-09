@@ -27,6 +27,72 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
+int sentinelSearch(int arr[], int n, int x)
+{
+    int last = arr[n - 1];
+
+    arr[n - 1] = x;
+    int i = 0;
+
+    while (arr[i] != x)
+        i++;
+
+    arr[n - 1] = last;
+
+    if ((i < n - 1) || (x == arr[n - 1]))
+        return i;
+    return -1;
+}
+
+int min(int x, int y)
+{
+     return (x<=y)? x : y;
+}
+
+int fibonacciSearch(int arr[], int x, int n)
+{
+   int fibMMm2 = 0;
+    int fibMMm1 = 1;
+    int fibM = fibMMm2 + fibMMm1;
+
+
+    while (fibM < n)
+    {
+        fibMMm2 = fibMMm1;
+        fibMMm1 = fibM;
+        fibM  = fibMMm2 + fibMMm1;
+    }
+
+    int offset = -1;
+
+    while (fibM > 1)
+    {
+        int i = min(offset+fibMMm2, n-1);
+
+        if (arr[i] < x)
+        {
+            fibM  = fibMMm1;
+            fibMMm1 = fibMMm2;
+            fibMMm2 = fibM - fibMMm1;
+            offset = i;
+        }
+
+        else if (arr[i] > x)
+        {
+            fibM  = fibMMm2;
+            fibMMm1 = fibMMm1 - fibMMm2;
+            fibMMm2 = fibM - fibMMm1;
+        }
+
+        else return i;
+    }
+
+    if(fibMMm1 && arr[offset+1]==x)return offset+1;
+
+    return -1;
+
+}
+
 int main()
 {
     int n,x;
@@ -55,6 +121,19 @@ int main()
 
     cout<<endl;
 
+    cout<<"\nSentinel Search"<<endl;
+    int solution = sentinelSearch(arr, n, x);
+       (solution == -1)? cout<<"Element is not present in array"
+                 : cout<<"Element is present at index " <<solution;
+
+    cout<<endl;
+
+    cout<<"\nFibonacci Search"<<endl;
+    int response = fibonacciSearch(arr, x, n);
+        (response == -1)? cout<<"Element is not present in array"
+                 : cout<<"Element is present at index " <<response;
+
+    cout<<endl;
     return 0;
 
    }
