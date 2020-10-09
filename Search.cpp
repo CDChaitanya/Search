@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 int search(int arr[], int n, int x)
@@ -93,6 +93,33 @@ int fibonacciSearch(int arr[], int x, int n)
 
 }
 
+int jumpSearch(int arr[], int x, int n)
+{
+    int step = sqrt(n);
+
+    int prev = 0;
+    while (arr[min(step, n)-1] < x)
+    {
+        prev = step;
+        step += sqrt(n);
+        if (prev >= n)
+            return -1;
+    }
+
+    while (arr[prev] < x)
+    {
+        prev++;
+
+        if (prev == min(step, n))
+            return -1;
+    }
+    if (arr[prev] == x)
+        return prev;
+
+    return -1;
+}
+
+
 int main()
 {
     int n,x;
@@ -132,6 +159,13 @@ int main()
     int response = fibonacciSearch(arr, x, n);
         (response == -1)? cout<<"Element is not present in array"
                  : cout<<"Element is present at index " <<response;
+
+    cout<<endl;
+
+    cout<<"\nJump Search"<<endl;
+    int select = jumpSearch(arr, x, n);
+        (select == -1)? cout<<"Element is not present in array"
+                 : cout<<"Element is present at index " <<select;
 
     cout<<endl;
     return 0;
