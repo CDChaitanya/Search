@@ -122,8 +122,11 @@ int jumpSearch(int arr[], int x, int n)
 
 int main()
 {
+    char reply;
+    do
+    {
     int n,x;
-    cout<<"Enter the size of the array : ";
+    cout<<"\nEnter the size of the array : ";
     cin>>n;
     int arr[n];
     cout<<"\nEnter the elements of the array : ";
@@ -134,41 +137,64 @@ int main()
     cout<<"\nEnter a number to be searched : ";
     cin>>x;
 
-    cout<<"\nLinear Search"<<endl;;
-    int result = search(arr, n, x);
+    int choice,result,answer,solution,response,select;
+
+    cout<<"\nEnter which Search you want"<<endl;
+    cout<<"1.Linear Search"<<endl;
+    cout<<"2.Binary Search"<<endl;
+    cout<<"3.Sentinel Search"<<endl;
+    cout<<"4.Fibonacci Search"<<endl;
+    cout<<"5.Jump Search"<<endl;
+    cin>>choice;
+
+    switch(choice)
+    {
+    case 1:
+
+    result = search(arr, n, x);
        (result == -1)? cout<<"Element is not present in array"
                  : cout<<"Element is present at index " <<result;
 
-    cout<<endl;
+                 break;
 
-    cout<<"\nBinary Search"<<endl;
-    int answer = binarySearch(arr, 0, n - 1, x);
+    case 2:
+
+    answer = binarySearch(arr, 0, n - 1, x);
        (answer == -1)? cout<<"Element is not present in array"
                  : cout<<"Element is present at index " <<answer;
 
-    cout<<endl;
+                 break;
 
-    cout<<"\nSentinel Search"<<endl;
-    int solution = sentinelSearch(arr, n, x);
+    case 3:
+
+    solution = sentinelSearch(arr, n, x);
        (solution == -1)? cout<<"Element is not present in array"
                  : cout<<"Element is present at index " <<solution;
 
-    cout<<endl;
+                 break;
 
-    cout<<"\nFibonacci Search"<<endl;
-    int response = fibonacciSearch(arr, x, n);
+    case 4:
+
+    response = fibonacciSearch(arr, x, n);
         (response == -1)? cout<<"Element is not present in array"
                  : cout<<"Element is present at index " <<response;
 
-    cout<<endl;
+                break;
 
-    cout<<"\nJump Search"<<endl;
-    int select = jumpSearch(arr, x, n);
+    case 5:
+
+    select = jumpSearch(arr, x, n);
         (select == -1)? cout<<"Element is not present in array"
                  : cout<<"Element is present at index " <<select;
 
-    cout<<endl;
-    return 0;
+                 break;
 
    }
+   cout<<"\nDo you want to continue(Y/N) : ";
+   cin>>reply;
+    }while(reply == 'Y');
+
+    return 0;
+}
+
 
