@@ -1,0 +1,2 @@
+# Search
+All Searching Algorithms
