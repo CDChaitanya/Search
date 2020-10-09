@@ -27,6 +27,23 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
+int sentinelSearch(int arr[], int n, int x)
+{
+    int last = arr[n - 1];
+
+    arr[n - 1] = x;
+    int i = 0;
+
+    while (arr[i] != x)
+        i++;
+
+    arr[n - 1] = last;
+
+    if ((i < n - 1) || (x == arr[n - 1]))
+        return i;
+    return -1;
+}
+
 int main()
 {
     int n,x;
@@ -55,6 +72,12 @@ int main()
 
     cout<<endl;
 
+    cout<<"\nSentinel Search"<<endl;
+    int solution = sentinelSearch(arr, n, x);
+       (solution == -1)? cout<<"Element is not present in array"
+                 : cout<<"Element is present at index " <<solution;
+
+    cout<<endl;
     return 0;
 
    }
